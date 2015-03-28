@@ -14,9 +14,16 @@
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" media="all" href="styles/main.css">
     <!-- endbuild -->
+
+    <base href="/">
+    <style>
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
   </head>
 
-  <body>
+  <body ng-controller="LayoutController as layout" ng-cloak>
 
     <header>
       <nav class="navbar navbar-default" role="navigation">
@@ -31,23 +38,24 @@
             <a class="navbar-brand" href="/">TODO-Module AngularJS</a>
           </div>
           <div class="collapse navbar-collapse" id="navbar">
-            <ul class="nav navbar-nav navbar-right">
+            <ul ng-if="!layout.currentUser" class="nav navbar-nav navbar-right">
               <li><a href="/">ログイン</a></li>
               <li><a href="users/new">新規登録</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><p class="email navbar-text"></p></li>
+            <ul ng-if="layout.currentUser" class="nav navbar-nav navbar-right">
+              <li><p class="email navbar-text" ng-bind="layout.currentUser.email"></p></li>
               <li><a id="logout" href="/logout">ログアウト</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+
     <div class="container-fluid">
 
-      <div class="alert alert-dismissible fade in" ng-class="layout.flash.class">
+      <div ng-if="layout.flash" class="alert alert-dismissible fade in" ng-class="layout.flash.class">
         <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-        <p></p>
+        <p>{{layout.flash.message}}</p>
       </div>
 
     </div>
@@ -68,6 +76,7 @@
     <!-- endinject -->
     <script src="scripts/main.js"></script>
     <script src="scripts/components/auth.service.js"></script>
+    <script src="scripts/layout/layout.controller.js"></script>
     <!-- endbuild -->
   </body>
 </html>
