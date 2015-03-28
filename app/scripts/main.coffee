@@ -1,4 +1,4 @@
-app = angular.module('app', ['ngRoute', 'ngMessages', 'ngResource'])
+app = angular.module('app', ['ngRoute', 'ngMessages', 'ngResource', 'env'])
 
 app.config(($routeProvider, $locationProvider) ->
 
