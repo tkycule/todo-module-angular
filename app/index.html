@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <title>TODO-Module AngularJS</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta charset="utf-8">
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" media="all" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+
+  <body>
+
+    <header>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">TODO-Module AngularJS</a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">ログイン</a></li>
+              <li><a href="users/new">新規登録</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><p class="email navbar-text"></p></li>
+              <li><a id="logout" href="/logout">ログアウト</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container-fluid">
+
+      <div class="alert alert-dismissible fade in" ng-class="layout.flash.class">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        <p></p>
+      </div>
+
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+  </body>
+</html>
