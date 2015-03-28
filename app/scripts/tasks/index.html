@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-sm-2" id="sidebar">
+    <h3>収集</h3>
+    <ul class="list-unstyled">
+      <li ng-class="{current: tasks.state == 'inbox'}">
+        <a class="clearfix" href="/tasks">
+          <div class="pull-left">
+            <i class="glyphicon glyphicon-inbox"></i>
+            収集箱
+          </div>
+          <div class="pull-right inbox-count">{{tasks.task_count["inbox"]}}</div>
+        </a>
+      </li>
+    </ul>
+    <h3>終了</h3>
+    <ul class="list-unstyled">
+      <li ng-class="{current: tasks.state == 'completed'}">
+        <a class="clearfix" href="/tasks/completed">
+          <div class="pull-left">
+            <i class="glyphicon glyphicon-ok-sign"></i>
+            完了
+          </div>
+          <div class="pull-right completed-count">{{tasks.task_count["completed"]}}</div>
+        </a>
+      </li>
+      <li ng-class="{current: tasks.state == 'deleted'}">
+        <a class="clearfix" href="/tasks/deleted">
+          <div class="pull-left">
+            <i class="glyphicon glyphicon-trash"></i>
+            ゴミ箱
+          </div>
+          <div class="pull-right deleted-count">{{tasks.task_count["deleted"]}}</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-10">
+    <form id="new_task" class="new_task" ng-submit="tasks.submit()">
+      <div class="input-group">
+        <input class="form-control" placeholder="タスク" type="text" id="task_title" ng-model="tasks.new_task_title">
+        <span class="input-group-btn">
+          <input type="submit" name="commit" value="登録" class="btn btn-success">
+        </span>
+      </div>
+    </form>
+
+    <ul class="list-unstyled" id="tasks">
+      <li class="task clearfix" ng-repeat="task in tasks.tasks | filter:{aasm_state: tasks.state} | orderBy:'id':true">
+        <div class="pull-left">
+          <a ng-href="tasks/{{task.id}}/edit">{{task.title}}</a>
+        </div>
+        <div class="pull-right">
+          <a ng-click="tasks.done(task)" ng-if="task.aasm_state == 'inbox'" class="task-complete btn btn-primary">完了</a>
+          <a ng-click="tasks.revert(task)" ng-if="task.aasm_state != 'inbox'" class="task-revert btn btn-default">戻す</a>
+          <a ng-click="tasks.delete(task)" ng-if="task.aasm_state != 'deleted'" class="task-delete btn btn-danger">削除</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
