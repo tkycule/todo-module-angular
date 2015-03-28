@@ -1,0 +1,33 @@
+<h1>ログイン</h1>
+
+<div class="well">
+  <form id="new_user" name="loginForm" ng-submit="login.submit()" novalidate>
+
+    <div class="form-group email required user_email" ng-class="{'has-error': loginForm.email.$dirty && loginForm.email.$invalid}">
+      <label class="control-label" for="user_email">
+        <abbr title="required">*</abbr>
+        メールアドレス
+      </label>
+      <input class="form-control" type="email" name="email" id="user_email" ng-model="login.email" required/>
+      <span class="help-block" ng-messages="loginForm.email.$error" ng-if="loginForm.email.$dirty">
+        <span ng-message="required">入力してください。</span>
+        <span ng-message="email">無効なメールアドレスです。</span>
+      </span>
+    </div>
+
+    <div class="form-group password required user_password" ng-class="{'has-error': loginForm.password.$dirty && loginForm.password.$invalid}">
+      <label class="control-label" for="user_password">
+        <abbr title="required">*</abbr>
+        パスワード
+      </label>
+      <input class="form-control" type="password" name="password" id="user_password" ng-model="login.password" required minlength="8"/>
+      <span class="help-block" ng-messages="loginForm.password.$error" ng-if="loginForm.password.$dirty">
+        <span ng-message="required">入力してください。</span>
+        <span ng-message="minlength">8文字以上で入力してください。</span>
+      </span>
+    </div>
+
+    <input ng-disabled="!loginForm.$valid" type="submit" value="Login" class="btn btn-primary btn-block">
+
+  </form>
+</div>
