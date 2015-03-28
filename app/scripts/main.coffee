@@ -33,3 +33,16 @@ app.config(($routeProvider, $locationProvider) ->
       redirectTo: '/'
     })
 )
+
+app.run(($rootScope, $location, $route, authService) ->
+
+  $rootScope.$on('$routeChangeStart', (event, next, current) ->
+
+    if next.controller == 'LoginController' || next.controller == 'UserController'
+      if authService.currentUser()
+        $location.path('/tasks')
+    else
+      unless authService.currentUser()
+        $location.path('/')
+  )
+)
