@@ -1,0 +1,49 @@
+<h1>新規登録</h1>
+
+<div class="well">
+  <form id="new_user" name="newUserForm" ng-submit="user.submit()" novalidate="novalidate">
+
+    <div class="form-group email required user_email" ng-class="{'has-error': newUserForm.email.$dirty && newUserForm.email.$invalid}">
+      <label class="control-label" for="user_email">
+        <abbr title="required">*</abbr>
+        メールアドレス
+      </label>
+      <input id="user_email" class="form-control" type="email" name="email" ng-model="user.email" required/>
+      <span class="help-block" ng-messages="newUserForm.email.$error" ng-if="newUserForm.email.$dirty">
+        <span ng-message="required">入力してください。</span>
+        <span ng-message="email">無効なメールアドレスです。</span>
+      </span>
+    </div>
+
+    <div class="form-group password required user_password" ng-class="{'has-error': newUserForm.password.$dirty && newUserForm.password.$invalid}">
+      <label class="control-label" for="user_password">
+        <abbr title="required">*</abbr>
+        パスワード
+      </label>
+      <input id="user_password" class="form-control" type="password" name="password" ng-model="user.password" required minlength="8"/>
+      <span class="help-block" ng-messages="newUserForm.password.$error" ng-if="newUserForm.password.$dirty">
+        <span ng-message="required">入力してください。</span>
+        <span ng-message="minlength">8文字以上で入力してください。</span>
+      </span>
+    </div>
+
+    <div class="form-group password required user_password_confirmation" ng-class="{'has-error': newUserForm.password_confirmation.$dirty && newUserForm.password_confirmation.$invalid}">
+
+      <label class="control-label" for="user_password_confirmation">
+        <abbr title="required">*</abbr>
+        パスワード(確認)
+      </label>
+
+      <input id="user_password_confirmation" class="form-control" type="password" name="password_confirmation"
+        ng-model="user.password_confirmation" required minlength="8" compare-to="user.password"/>
+
+      <span class="help-block" ng-messages="newUserForm.password_confirmation.$error" ng-if="newUserForm.password_confirmation.$dirty">
+        <span ng-message="required">入力してください。</span>
+        <span ng-message="minlength">8文字以上で入力してください。</span>
+        <span ng-message="compareTo">パスワードが一致しません。</span>
+      </span>
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-primary btn-block">
+  </form>
+</div>
