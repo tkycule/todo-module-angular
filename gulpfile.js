@@ -78,7 +78,6 @@ gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
     '!app/*.html',
-    '.tmp/styles/**/*.css'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'));
