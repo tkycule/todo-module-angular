@@ -1,0 +1,22 @@
+<h2>タスク編集</h2>
+<div class="well">
+  <form class="edit_task" name="taskForm" ng-submit="edit.submit()" novalidate="novalidate">
+
+    <div class="form-group string required task_title" ng-class="{'has-error': taskForm.title.$dirty && taskForm.title.$invalid}">
+      <label class="control-label" for="task_title">
+        <abbr title="required">*</abbr>
+        タイトル
+      </label>
+      <input class="form-control" type="text" name="title" id="task_title" ng-model="edit.task.title" required>
+      <span class="help-block" ng-messages="taskForm.title.$error" ng-if="taskForm.title.$dirty">
+        <span ng-message="required">入力してください。</span>
+      </span>
+    </div>
+
+    <div class="form-group text optional task_memo">
+      <label class="control-label" for="task_memo">メモ</label>
+      <textarea class="form-control" id="task_memo" ng-model="edit.task.memo"></textarea>
+    </div>
+    <input type="submit" name="commit" value="Save" class="btn btn-primary btn-block">
+  </form>
+</div>
