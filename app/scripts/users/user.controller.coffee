@@ -14,7 +14,7 @@ angular.module('app').controller('UserController',
 
       return unless $scope.newUserForm.$valid
 
-      user = new User(user: {
+      user = new User({
         email: vm.email,
         password: vm.password,
         password_confirmation: vm.password_confirmation

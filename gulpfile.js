@@ -50,7 +50,7 @@ gulp.task('html', ['injector:js', 'styles', 'scripts', 'templates'], function ()
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true, empty: true})))
     .pipe(gulp.dest('dist'));
 });
 
